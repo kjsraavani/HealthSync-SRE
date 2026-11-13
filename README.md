@@ -39,6 +39,8 @@ ForceFailover=False)
 return {"status": "Healed"}
 except Exception as e:
 print(f"Healing Failed: {str(e)}")
+
+
 SRE Objectives
 Service Level Indicators (SLIs)
 Availability: Successful connection rate to the Medical RDS instance.
@@ -51,4 +53,6 @@ This project bridges 4 years of Healthcare IT experience with a Founder's Mindse
 Having managed mission-critical systems where uptime is vital for patient safety, I
 believe that Reliability is a feature, not an afterthought. This repository serves as a
 blueprint for Resilient HealthTech Infrastructure.
+
+
 Developed by Kunapuli Jyothsna Sravani | Senior IT Professional | AWS AI & ML Scholar
