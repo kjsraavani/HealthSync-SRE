@@ -1,3 +1,54 @@
 [healthsync-sre-readme.pdf](https://github.com/user-attachments/files/34823336/healthsync-sre-readme.pdf)
 # HealthSync-SRE
 Automated Self-Healing &amp; Compliance Monitoring for Medical RDS
+HealthSync-SRE
+Automated Self-Healing & Compliance Monitoring for Mission-Critical Medical
+Data
+AWS Lambda Amazon RDS Python SRE Mindset HIPAA Compliance
+Mission Statement: In healthcare infrastructure, downtime isn't just a business
+loss—it's a risk to patient care. This project demonstrates a High-Reliability
+architecture designed to detect, log, and auto-remediate database connection
+failures while maintaining strict Regulatory Compliance.
+Core Features
+Automated Self-Healing: Leverages AWS CloudWatch Alarms to trigger Lambdabased
+remediation, reducing Mean Time to Recovery (MTTR) from minutes to
+seconds.
+Compliance-First Design: Implements ForceFailover=False logic to prioritize
+Data Integrity and prevent record corruption during recovery cycles.
+Auditability: Every healing event is logged via Amazon SNS and CloudWatch Logs,
+providing a transparent trail for HIPAA and SOC2 auditors.
+Founder’s Logic: Built with a focus on Operational Excellence—minimizing
+manual "toil" so engineers can focus on feature growth rather than fire-fighting.
+The "Healer" Logic (handler.py)
+This Python-based watchdog monitors the health of the medical database and
+executes a safe reboot if connection thresholds are breached.
+import boto3
+import os
+rds = boto3.client('rds')
+def lambda_handler(event, context):
+•
+•
+•
+•
+db_id = os.environ['DB_INSTANCE_ID']
+print(f"Health Alert: Initiating self-healing for {db_id}")
+try:
+# Executing a non-destructive reboot to clear connection bottlenecks
+rds.reboot_db_instance(DBInstanceIdentifier=db_id,
+ForceFailover=False)
+return {"status": "Healed"}
+except Exception as e:
+print(f"Healing Failed: {str(e)}")
+SRE Objectives
+Service Level Indicators (SLIs)
+Availability: Successful connection rate to the Medical RDS instance.
+Latency: Time taken to complete the automated reboot cycle.
+Service Level Objectives (SLOs)
+Maintain 99.99% Uptime for core data pipelines.
+Automated recovery must trigger within 30 seconds of alert breach.
+Background & Philosophy
+This project bridges 4 years of Healthcare IT experience with a Founder's Mindset.
+Having managed mission-critical systems where uptime is vital for patient safety, I
+believe that Reliability is a feature, not an afterthought. This repository serves as a
+blueprint for Resilient HealthTech Infrastructure.
+Developed by Kunapuli Jyothsna Sravani | Senior IT Professional | AWS AI & ML Scholar
