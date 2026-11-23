@@ -38,7 +38,7 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f"Healing Failed: {str(e)}")
         return {"statusCode": 500, "status": "Failed"}
-
+```
 
 ---
 
