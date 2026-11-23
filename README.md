@@ -40,23 +40,29 @@ def lambda_handler(event, context):
         return {"statusCode": 500, "status": "Failed"}
 
 
+---
+
 ## Verification & Fault Injection Testing
 To validate automated recovery and HIPAA-compliant audit logging, a simulated alarm state was injected into the pipeline:
 
 ### 1. Automated Remediation Audit Trail (CloudWatch Logs)
-![CloudWatch Logs.png]
+![CloudWatch Logs Audit Trail](CloudWatch%20Logs.png)
 
 ### 2. Database Recovery Verification (RDS Events)
-![DB instance reboot.png]
+![RDS Instance Restart Verification](DB%20instance%20reboot.png)
 
-SRE Objectives
-Service Level Indicators (SLIs)
-Availability: Successful connection rate to the Medical RDS instance.
-Latency: Time taken to complete the automated reboot cycle.
-Service Level Objectives (SLOs)
-Maintain 99.99% Uptime for core data pipelines.
-Automated recovery must trigger within 30 seconds of alert breach.
+---
 
+## SRE Objectives
 
+### Service Level Indicators (SLIs)
+* **Availability:** Successful connection rate to the Medical RDS instance.
+* **Latency:** Time taken to complete the automated reboot cycle.
 
-Developed by Kunapuli Jyothsna Sravani | Senior IT Professional | AWS AI & ML Scholar
+### Service Level Objectives (SLOs)
+* Maintain **99.99% Uptime** for core data pipelines.
+* Automated recovery must trigger within **30 seconds** of alert breach.
+
+---
+
+*Developed by Kunapuli Jyothsna Sravani | Senior IT Professional | AWS AI & ML Scholar*
