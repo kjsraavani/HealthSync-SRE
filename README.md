@@ -40,6 +40,15 @@ def lambda_handler(event, context):
         return {"statusCode": 500, "status": "Failed"}
 
 
+## Verification & Fault Injection Testing
+To validate automated recovery and HIPAA-compliant audit logging, a simulated alarm state was injected into the pipeline:
+
+### 1. Automated Remediation Audit Trail (CloudWatch Logs)
+![CloudWatch Logs.png]
+
+### 2. Database Recovery Verification (RDS Events)
+![DB instance reboot.png]
+
 SRE Objectives
 Service Level Indicators (SLIs)
 Availability: Successful connection rate to the Medical RDS instance.
